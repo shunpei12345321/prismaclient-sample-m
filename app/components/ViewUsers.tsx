@@ -24,31 +24,17 @@ const ViewUsers = () => {
 		fetchUsers();
 	}, []);
 
-	// タイマーをスタートする関数 １２０９
-	const startTimer = (userId: string) => {
-		setTimers((prevTimers) => ({
-			...prevTimers,
-			[userId]: 0, // 初期値として0秒からスタート
-		}));
-	};
+	// タイマーをスタートする関数 v
+	// const startTimer = (userId: string) => {
+	// 	setTimers((prevTimers) => ({
+	// 		...prevTimers,
+	// 		[userId]: 0, // 初期値として0秒からスタート
+	// 	}));
+	// };
 
 	// const handleReload = () => {
 	// 	setReload(!reload);
 	// };
-
-	useEffect(() => {
-		const interval = setInterval(() => {
-			setTimers((prevTimers) => {
-				const updatedTimers: { [key: string]: number } = {};
-				Object.keys(prevTimers).forEach((userId) => {
-					updatedTimers[userId] = prevTimers[userId] + 1;
-				});
-				return updatedTimers;
-			});
-		}, 1000);
-
-		return () => clearInterval(interval); // クリーンアップ
-	}, []);
 
 	return (
 		<div className="w-1/2 flex flex-col ">
