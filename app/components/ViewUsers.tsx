@@ -6,9 +6,11 @@ import { useEffect, useState } from "react";
 
 const ViewUsers = () => {
 	const [users, setUsers] = useState<UserType[]>([]);
-	const [reload, setReload] = useState(false);
+	// const [reload, setReload] = useState(false);
 	const [isLoading, setIsLoading] = useState(false);
+	const [timers, setTimers] = useState<{ [key: string]: number }>({});
 
+	//これをリポジトリ―に持っていけばよい
 	useEffect(() => {
 		const fetchUsers = async () => {
 			setIsLoading(true);
@@ -20,35 +22,59 @@ const ViewUsers = () => {
 			setIsLoading(false);
 		};
 		fetchUsers();
-	}, [reload]);
+	}, []);
 
-	const handleReload = () => {
-		setReload(!reload);
-	};
+	// タイマーをスタートする関数 v
+	// const startTimer = (userId: string) => {
+	// 	setTimers((prevTimers) => ({
+	// 		...prevTimers,
+	// 		[userId]: 0, // 初期値として0秒からスタート
+	// 	}));
+	// };
+
+	// const handleReload = () => {
+	// 	setReload(!reload);
+	// };
 
 	return (
 		<div className="w-1/2 flex flex-col ">
 			<div className="flex justify-between mb-5">
 				<p className="text-center font-bold text-3xl">Supabase: User table</p>
-				{isLoading ? (
+				{/* {isLoading ? (
 					<p>Reloading...</p>
 				) : (
 					<button
 						onClick={handleReload}
 						type="button"
-						className="bg-blue-500 text-white px-2 py-1">
+						className="bg-blue-500 text-white px-2 py-1"
+					>
 						Reload
 					</button>
-				)}
+				)} */}
 			</div>
-			<div className="flex flex-col items-center justify-start">
+			{/* <div className="flex flex-col items-center justify-start">
+				{users.length > 0 && (
+					<div className="flex border-2 w-full px-2 py-1">
+						<p className="text-sm text-gray-800">
+							id{users[users.length - 1].id}
+						</p>
+						<p className="text-sm text-gray-800">
+							名前{users[users.length - 1].name}
+						</p>
+						<p className="text-sm text-gray-800">
+							メール{users[users.length - 1].email}
+						</p>
+					</div>
+				)}
+			</div> */}
+
+			<div className="flex flex-col items-center justify-start h-64 overflow-y-scroll border">
 				{users.map((user) => (
-					<Link
-						key={user.id}
-						href={`/user/edit/${user.id}`}
-						className="flex border-2 w-full px-2 py-1">
-						{JSON.stringify(user)}
-					</Link>
+					<div key={user.id} className="flex border-b w-full px-2 py-1">
+						<p className="text-sm text-gray-800">id: {user.id}</p>
+						<p className="text-sm text-gray-800 ml-4">名前: {user.name}</p>
+						<p className="text-sm text-gray-800 ml-4">メール: {user.email}</p>
+					</div>
 				))}
 			</div>
 		</div>

@@ -23,7 +23,7 @@ const EditUser = () => {
 			setIsFetching(false);
 		};
 		fetchUser();
-	}, []);
+	}, [id]);
 
 	const handleSubmit = async (e: React.FormEvent) => {
 		e.preventDefault();
@@ -101,14 +101,16 @@ const EditUser = () => {
 						<button
 							type="button"
 							onClick={handleSubmit}
-							className="bg-blue-500 text-white px-2 py-1">
+							className="bg-blue-500 text-white px-2 py-1"
+						>
 							Submit
 						</button>
 					)}
 					<button
 						type="button"
 						onClick={handleDelete}
-						className="bg-red-500 text-white px-2 py-1">
+						className="bg-red-500 text-white px-2 py-1"
+					>
 						Delete
 					</button>
 				</div>

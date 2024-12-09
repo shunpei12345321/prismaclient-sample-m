@@ -4,14 +4,12 @@ import { useRouter } from "next/navigation";
 import { useState } from "react";
 
 const NewUser = () => {
-	const router = useRouter();
-
 	const [name, setName] = useState("");
 	const [email, setEmail] = useState("");
-	const [isFetching, setIsFetching] = useState(false);
+	// const [isFetching, setIsFetching] = useState(false);
+	// const router = useRouter();
 
 	const handleSubmit = async () => {
-		setIsFetching(true);
 		{
 			const response = await fetch("/api/user", {
 				method: "POST",
@@ -22,10 +20,9 @@ const NewUser = () => {
 			});
 			const data = await response.json();
 		}
-		setIsFetching(false);
 
-		router.push("/");
-		router.refresh();
+		// router.push("/");
+		// router.refresh();
 	};
 
 	return (
@@ -60,24 +57,30 @@ const NewUser = () => {
 						className="border-2 p-2"
 					/>
 				</div>
-				{isFetching ? (
+				{
+					/* {isFetching ? (
 					<p className="text-center">Creating...</p>
-				) : (
-					<button
-						type="button"
-						onClick={handleSubmit}
-						className="bg-blue-500 text-white px-2 py-1">
-						Submit
-					</button>
-				)}
+				) : ( */
+					//これがないとリロードボタン押さないｔフェッチされない
+				}
+
+				{/* )} */}
 			</form>
 
-			<div className="flex flex-col w-full">
+			<button
+				type="button"
+				onClick={handleSubmit}
+				className="bg-blue-500 text-white px-2 py-1"
+			>
+				Submit
+			</button>
+
+			{/* <div className="flex flex-col w-full">
 				<p className="font-bold">REST-API Payload:</p>
 				<div className="border-2 items-center justify-center p-5 overflow-auto whitespace-normal">
 					{JSON.stringify({ name, email })}
 				</div>
-			</div>
+			</div> する機能*/}
 		</div>
 	);
 };
