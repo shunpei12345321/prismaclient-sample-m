@@ -3,7 +3,7 @@
 import Link from "next/link";
 import NewUser from "../components/NewUser";
 
-const RecordPage = async () => {
+const RecordPage = () => {
 	return (
 		<div className="conatiner m-auto">
 			<div className="flex items-center justify-between h-screen">

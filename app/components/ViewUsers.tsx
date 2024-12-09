@@ -6,7 +6,7 @@ import { useEffect, useState } from "react";
 
 const ViewUsers = () => {
 	const [users, setUsers] = useState<UserType[]>([]);
-	const [reload, setReload] = useState(false);
+	// const [reload, setReload] = useState(false);
 	const [isLoading, setIsLoading] = useState(false);
 
 	useEffect(() => {
@@ -20,35 +20,37 @@ const ViewUsers = () => {
 			setIsLoading(false);
 		};
 		fetchUsers();
-	}, [reload]);
+	}, []);
 
-	const handleReload = () => {
-		setReload(!reload);
-	};
+	// const handleReload = () => {
+	// 	setReload(!reload);
+	// };
 
 	return (
 		<div className="w-1/2 flex flex-col ">
 			<div className="flex justify-between mb-5">
 				<p className="text-center font-bold text-3xl">Supabase: User table</p>
-				{isLoading ? (
+				{/* {isLoading ? (
 					<p>Reloading...</p>
 				) : (
 					<button
 						onClick={handleReload}
 						type="button"
-						className="bg-blue-500 text-white px-2 py-1">
+						className="bg-blue-500 text-white px-2 py-1"
+					>
 						Reload
 					</button>
-				)}
+				)} */}
 			</div>
 			<div className="flex flex-col items-center justify-start">
 				{users.map((user) => (
-					<Link
+					<button
 						key={user.id}
-						href={`/user/edit/${user.id}`}
-						className="flex border-2 w-full px-2 py-1">
+						//href={`/user/edit/${user.id}`}
+						className="flex border-2 w-full px-2 py-1"
+					>
 						{JSON.stringify(user)}
-					</Link>
+					</button>
 				))}
 			</div>
 		</div>
