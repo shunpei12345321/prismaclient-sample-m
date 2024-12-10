@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import NewUser from "../components/NewUser";
+import NewUser from "../components/NewProduct";
 
 const RecordPage = () => {
 	return (
